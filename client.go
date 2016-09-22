@@ -71,9 +71,6 @@ func (client *Client) Request(method, path string, payload, destination interfac
 	req.Header.Add("Accept", "application/json")
 	req.Header.Add("Content-Type", "application/json")
 
-	fmt.Printf("%+v\n", client.Token)
-	fmt.Printf("%+v\n", client.ConnectionType)
-
 	// Ensure we pass the correct header depending on the connectiont type.
 	if client.ConnectionType == PostmarkConnectionTypeServer {
 		req.Header.Add("X-Postmark-Server-Token", client.Token)
