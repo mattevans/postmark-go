@@ -92,7 +92,7 @@ func (client *Client) Request(method, path string, payload, destination interfac
 		return err
 	}
 
-	// Unmarshal reaquest body into destination interface.
+	// Unmarshal request body into destination interface.
 	err = json.Unmarshal(body, destination)
 	return err
 }
