@@ -2,7 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/mattevans/postmark-go?status.svg)](https://godoc.org/github.com/mattevans/postmark-go)
 
-[Go](http://golang.org) bindings for the Postmark API (http://developer.postmarkapp.com/).
+postmark-go is a [Go](http://golang.org) client library for accessing the Postmark API (http://developer.postmarkapp.com/).
 
 This is an unofficial library that is not affiliated with [Postmark](http://postmarkapp.com). Official libraries are available
 [here](http://developer.postmarkapp.com/developer-official-libs.html).
