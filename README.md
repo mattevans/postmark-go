@@ -7,6 +7,17 @@ postmark-go is a [Go](http://golang.org) client library for accessing the Postma
 This is an unofficial library that is not affiliated with [Postmark](http://postmarkapp.com). Official libraries are available
 [here](http://developer.postmarkapp.com/developer-official-libs.html).
 
+Installation
+-----------------
+
+`go get -u github.com/mattevans/postmark-go`
+
+Setup
+-----------------
+
+You'll need to pass an `API_TOKEN` when initializing the client. This token can be
+found under the 'Credentials' tab of your Postmark server. More info [here](http://developer.postmarkapp.com/developer-api-overview.html#authentication).
+
 Example usage
 -------------
 
@@ -33,12 +44,6 @@ if err != nil {
   return err
 }
 ```
-
-Setup
------------------
-
-You'll need to pass an `API_TOKEN` when initializing the client. This token can be
-found under the 'Credentials' tab of your Postmark server. More info [here](http://developer.postmarkapp.com/developer-api-overview.html#authentication).
 
 What's Implemented?
 ----------------
