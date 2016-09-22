@@ -1,15 +1,18 @@
 package postmark
 
 import (
-	"fmt"
+	"errors"
 	"time"
 )
 
-// EmailHeader holds values of a email header.
-type EmailHeader struct {
-	Name  string
-	Value string
-}
+const (
+	emailAPIPath             = "email"
+	emailWithTemplateAPIPath = "email/withTemplate"
+)
+
+// EmailService handles communication with the email related methods of the
+// Postmark API (http://developer.postmarkapp.com/developer-api-email.html)
+type EmailService service
 
 // Email is the set of parameters that can be used when sending an email.
 type Email struct {
@@ -28,32 +31,42 @@ type Email struct {
 	TrackOpens    bool                   `json:",omitempty"`
 }
 
+// EmailHeader represents the values for an email header.
+type EmailHeader struct {
+	Name  string
+	Value string
+}
+
 // EmailResponse is the set of parameters that is used in response to a send
 // request
 type EmailResponse struct {
 	To          string
 	SubmittedAt time.Time
 	MessageID   string
-	ErrorCode   int64
-	Message     string
 }
 
-// SendEmail will send the email via Postmark.
-func (client *Client) SendEmail(email Email) (EmailResponse, error) {
-
-	// Postmark API endpoints change if using a template for the email.
-	endpoint := "email"
-	if email.TemplateID != 0 {
-		endpoint = "email/withTemplate"
+// Send will build and execute request to send an email via the API.
+func (s *EmailService) Send(emailRequest *Email) (*EmailResponse, *Response, error) {
+	if emailRequest == nil {
+		return nil, nil, errors.New("The email request cannot be nil")
 	}
 
-	response := EmailResponse{}
-	err := client.Request("POST", endpoint, email, &response)
-
-	// If our response code is not successful, handle appropriately.
-	if response.ErrorCode != 0 {
-		return response, fmt.Errorf(`%v %s`, response.ErrorCode, response.Message)
+	// If we have a template ID, use the Postmark template API endpoint.
+	requestPath := emailAPIPath
+	if emailRequest.TemplateID != 0 {
+		requestPath = emailWithTemplateAPIPath
 	}
 
-	return response, err
+	request, err := s.client.NewRequest("POST", requestPath, emailRequest)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	email := &EmailResponse{}
+	response, err := s.client.Do(request, email)
+	if err != nil {
+		return nil, response, err
+	}
+
+	return email, response, nil
 }
