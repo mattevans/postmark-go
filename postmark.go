@@ -162,8 +162,3 @@ func CheckResponse(r *http.Response) error {
 	return errorResponse
 }
 
-// newResponse creates a new Response for the provided http.Response
-func newResponse(r *http.Response) *Response {
-	response := Response{Response: r}
-	return &response
-}
