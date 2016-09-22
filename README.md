@@ -10,7 +10,7 @@ This is an unofficial library that is not affiliated with [Postmark](http://post
 Example usage
 -------------
 
-```
+```go
 auth := &http.Client{
   Transport: &postmark.AuthTransport{Token: "API_TOKEN"},
 }
