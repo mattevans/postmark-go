@@ -77,6 +77,7 @@ At the moment only a very small number of API endpoints are implemented. Open an
 issue (or PR) if you required additional endpoints!
 
 - [Send Email](http://developer.postmarkapp.com/developer-api-email.html#send-email)
+- [Batch Emails](http://developer.postmarkapp.com/developer-api-email.html#batch-emails)
 
 Thanks &amp; Acknowledgements :ok_hand:
 ----------------
