@@ -16,18 +16,22 @@ Installation
 Setup
 -----------------
 
-You'll need to pass an `API_TOKEN` when initializing the client. This token can be
+You'll need to pass an `SERVER_API_TOKEN` when initializing the client. This token can be
 found under the 'Credentials' tab of your Postmark server. More info [here](http://developer.postmarkapp.com/developer-api-overview.html#authentication).
 
-Example usage
+Authentication
+-------------
+```go
+auth := &http.Client{
+  Transport: &postmark.AuthTransport{Token: "SERVER_API_TOKEN"},
+}
+client := postmark.NewClient(auth)
+```
+
+Example usage (with Template)
 -------------
 
 ```go
-auth := &http.Client{
-  Transport: &postmark.AuthTransport{Token: "API_TOKEN"},
-}
-client := postmark.NewClient(auth)
-
 emailReq := &postmark.Email{
   From:       "mail@company.com",
   To:         "jack@sparrow.com",
@@ -39,9 +43,29 @@ emailReq := &postmark.Email{
   Tag:        "onboarding",
   TrackOpens: true,
 }
+
 email, response, err := client.Email.Send(emailReq)
 if err != nil {
-  fmt.Printf("Oh no! \n%v\n%v\n", response, err)
+  return err
+}
+```
+
+Example usage (with HtmlBody)
+-------------
+
+```go
+emailReq := &postmark.Email{
+  From:       "mail@company.com",
+  To:         "jack@sparrow.com",
+  Subject:    "My Test Email",
+  HtmlBody:   "<html><body><strong>Hello</strong> dear Postmark user.</body></html>",
+  TextBody:   "Hello dear Postmark user",
+  Tag:        "onboarding",
+  TrackOpens: true,
+}
+
+email, response, err := client.Email.Send(emailReq)
+if err != nil {
   return err
 }
 ```

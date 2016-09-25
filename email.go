@@ -7,6 +7,7 @@ import (
 
 const (
 	emailAPIPath             = "email"
+	emailBatchAPIPath        = "email/batch"
 	emailWithTemplateAPIPath = "email/withTemplate"
 )
 
@@ -63,6 +64,26 @@ func (s *EmailService) Send(emailRequest *Email) (*EmailResponse, *Response, err
 	}
 
 	email := &EmailResponse{}
+	response, err := s.client.Do(request, email)
+	if err != nil {
+		return nil, response, err
+	}
+
+	return email, response, nil
+}
+
+// SendBatch will build and execute request to send batch emails via the API.
+func (s *EmailService) SendBatch(emailRequests []*Email) ([]*EmailResponse, *Response, error) {
+	if len(emailRequests) < 1 {
+		return nil, nil, errors.New("You must pass a minimum of one email to SendBatch()")
+	}
+
+	request, err := s.client.NewRequest("POST", emailBatchAPIPath, emailRequests)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	email := []*EmailResponse{}
 	response, err := s.client.Do(request, email)
 	if err != nil {
 		return nil, response, err

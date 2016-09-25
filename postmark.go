@@ -131,7 +131,7 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 				return nil, err
 			}
 		} else {
-			err = json.NewDecoder(resp.Body).Decode(v)
+			err = json.NewDecoder(resp.Body).Decode(&v)
 			if err != nil {
 				return nil, err
 			}
@@ -145,6 +145,7 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 // error if it has a status code outside the 200 range. API error responses map
 // to ErrorResponse.
 func CheckResponse(r *http.Response) error {
+	fmt.Printf("%+v\n", r.StatusCode)
 	if c := r.StatusCode; c >= 200 && c <= 299 {
 		return nil
 	}
@@ -158,7 +159,7 @@ func CheckResponse(r *http.Response) error {
 			return err
 		}
 	}
+	fmt.Printf("%+v\n", "After Checking rssoibse")
 
 	return errorResponse
 }
-
