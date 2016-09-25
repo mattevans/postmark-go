@@ -145,7 +145,6 @@ func (c *Client) Do(req *http.Request, v interface{}) (*Response, error) {
 // error if it has a status code outside the 200 range. API error responses map
 // to ErrorResponse.
 func CheckResponse(r *http.Response) error {
-	fmt.Printf("%+v\n", r.StatusCode)
 	if c := r.StatusCode; c >= 200 && c <= 299 {
 		return nil
 	}
