@@ -158,7 +158,5 @@ func CheckResponse(r *http.Response) error {
 			return err
 		}
 	}
-	fmt.Printf("%+v\n", "After Checking rssoibse")
-
 	return errorResponse
 }
