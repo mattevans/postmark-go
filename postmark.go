@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	packageVersion = "0.1.0"
+	packageVersion = "0.1.1"
 	backendURL     = "https://api.postmarkapp.com"
 	userAgent      = "postmark-go/" + packageVersion
 
