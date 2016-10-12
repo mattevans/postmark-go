@@ -58,7 +58,7 @@ emailReq := &postmark.Email{
   From:       "mail@company.com",
   To:         "jack@sparrow.com",
   Subject:    "My Test Email",
-  HTMLBody:   "<html><body><strong>Hello</strong> dear Postmark user.</body></html>",
+  HtmlBody:   "<html><body><strong>Hello</strong> dear Postmark user.</body></html>",
   TextBody:   "Hello dear Postmark user",
   Tag:        "onboarding",
   TrackOpens: true,
