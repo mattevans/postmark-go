@@ -77,6 +77,7 @@ At the moment only a very small number of API endpoints are implemented. Open an
 issue (or PR) if you required additional endpoints!
 
 - Send Email - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#send-email) | [Example](examples/send-email/main.go)
+- Send Email & Attachment - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#send-email) | [Example](examples/send-email-attachment/main.go)
 - Batch Emails - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#batch-emails) | [Example](examples/batch-emails/main.go)
 
 Thanks &amp; Acknowledgements :ok_hand:
