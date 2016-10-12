@@ -29,6 +29,7 @@ type Email struct {
 	TextBody      string                 `json:",omitempty"`
 	ReplyTo       string                 `json:",omitempty"`
 	Headers       []EmailHeader          `json:",omitempty"`
+	Attachments   []EmailAttachment      `json:",omitempty"`
 	TrackOpens    bool                   `json:",omitempty"`
 }
 
@@ -36,6 +37,13 @@ type Email struct {
 type EmailHeader struct {
 	Name  string
 	Value string
+}
+
+// EmailAttachment represents the values for an email attachment.
+type EmailAttachment struct {
+	Name        string
+	Content     []byte
+	ContentType *string
 }
 
 // EmailResponse is the set of parameters that is used in response to a send
