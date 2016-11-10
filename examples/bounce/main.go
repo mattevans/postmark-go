@@ -21,5 +21,15 @@ func main() {
 	}
 
 	// Output the results.
-	fmt.Printf("Delivery Stats: \n%v\n", stats)
+	fmt.Printf("Delivery Stats: \n%v\n\n", stats)
+
+	// Get bounces
+	params := map[string]interface{}{}
+	bounces, response, err := client.Bounce.GetBounces(500, 0, params)
+	if err != nil {
+		fmt.Printf("ERR: \n%v\n%v\n", response, err)
+	}
+
+	// Output the results.
+	fmt.Printf("Bounces: \n%v\n\n", bounces)
 }
