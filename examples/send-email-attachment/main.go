@@ -35,7 +35,7 @@ func main() {
 	// Send it!
 	_, response, err := client.Email.Send(emailReq)
 	if err != nil {
-		fmt.Printf("Oh no! \n%v\n%v\n", response, err)
+		fmt.Printf("ERR: \n%v\n%v\n", response, err)
 	}
 }
 
