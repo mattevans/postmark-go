@@ -79,7 +79,8 @@ issue (or PR) if you required additional endpoints!
 - Send Email - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#send-email) | [Example](examples/send-email/main.go)
 - Send Email & Attachment - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#send-email) | [Example](examples/send-email-attachment/main.go)
 - Batch Emails - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#batch-emails) | [Example](examples/batch-emails/main.go)
-- Bounce - Get Delivery Stats - [API Docs](http://developer.postmarkapp.com/developer-api-bounce.html#delivery-stats) | [Example](examples/bounce-get-delivery-stats/main.go)
+- Get Delivery Stats - [API Docs](http://developer.postmarkapp.com/developer-api-bounce.html#delivery-stats) | [Example](examples/bounce/main.go)
+- Get Bounces - [API Docs](http://developer.postmarkapp.com/developer-api-bounce.html#bounces) | [Example](examples/bounce/main.go)
 
 Thanks &amp; Acknowledgements :ok_hand:
 ----------------
