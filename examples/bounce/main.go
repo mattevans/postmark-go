@@ -23,8 +23,12 @@ func main() {
 	// Output the results.
 	fmt.Printf("Delivery Stats: \n%v\n\n", stats)
 
-	// Get bounces
-	params := map[string]interface{}{}
+	// Get bounces (with filters)
+	params := map[string]interface{}{
+		"type":     "HardBounce",
+		"fromdate": "2015-01-01",
+		"todate":   "2016-11-30",
+	}
 	bounces, response, err := client.Bounce.GetBounces(500, 0, params)
 	if err != nil {
 		fmt.Printf("ERR: \n%v\n%v\n", response, err)

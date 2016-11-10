@@ -1,6 +1,7 @@
 package postmark
 
 import (
+	"errors"
 	"fmt"
 	"net/url"
 	"strconv"
@@ -77,6 +78,11 @@ type Bounce struct {
 
 // GetBounces will return all bounces.
 func (s *BounceService) GetBounces(bounceCount, bounceOffset int, parameters map[string]interface{}) (*Bounces, *Response, error) {
+
+	// Ensure our bounce count meets criteria.
+	if bounceCount > 500 {
+		return nil, nil, errors.New("The max number of bounces to return per request is 500.")
+	}
 
 	// Construct query parameters.
 	values := &url.Values{}
