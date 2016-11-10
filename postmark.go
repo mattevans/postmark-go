@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	packageVersion = "0.1.1"
+	packageVersion = "0.1.2"
 	backendURL     = "https://api.postmarkapp.com"
 	userAgent      = "postmark-go/" + packageVersion
 
@@ -28,7 +28,8 @@ type Client struct {
 	BackendURL     *url.URL
 
 	// Services used for communicating with the API.
-	Email *EmailService
+	Email  *EmailService
+	Bounce *BounceService
 }
 
 type service struct {
@@ -70,6 +71,7 @@ func NewClient(httpClient *http.Client) *Client {
 	}
 
 	c.Email = &EmailService{client: c}
+	c.Bounce = &BounceService{client: c}
 	return c
 }
 
