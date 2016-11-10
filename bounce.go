@@ -92,7 +92,7 @@ func (s *BounceService) GetBounces(bounceCount, bounceOffset int, parameters map
 		values.Add(key, fmt.Sprintf("%v", value))
 	}
 
-	request, err := s.client.NewRequest("GET", fmt.Sprintf("%s?%s", bounceDeliveryStatsAPIPath, values.Encode()), nil)
+	request, err := s.client.NewRequest("GET", fmt.Sprintf("%s?%s", bounceBouncesAPIPath, values.Encode()), nil)
 	if err != nil {
 		return nil, nil, err
 	}
