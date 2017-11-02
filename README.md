@@ -81,6 +81,10 @@ issue (or PR) if you required additional endpoints!
 - Batch Emails - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#batch-emails) | [Example](examples/batch-emails/main.go)
 - Get Delivery Stats - [API Docs](http://developer.postmarkapp.com/developer-api-bounce.html#delivery-stats) | [Example](examples/bounce/main.go)
 - Get Bounces - [API Docs](http://developer.postmarkapp.com/developer-api-bounce.html#bounces) | [Example](examples/bounce/main.go)
+- Get Single Bounce - [API Docs](https://postmarkapp.com/developer/api/bounce-api#single-bounce)
+- Get Bounce Dump - [API Docs](https://postmarkapp.com/developer/api/bounce-api#bounce-dump)
+- Activate a Bounce - [API Docs](https://postmarkapp.com/developer/api/bounce-api#activate-bounce)
+- Get Bounced Tags - [API Docs](https://postmarkapp.com/developer/api/bounce-api#bounced-tags)
 
 Thanks &amp; Acknowledgements :ok_hand:
 ----------------
