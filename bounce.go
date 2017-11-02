@@ -17,9 +17,6 @@ const (
 // Postmark API (http://developer.postmarkapp.com/developer-api-bounce.html)
 type BounceService service
 
-/*
- * GetDeliveryStats --------------------------------------------------------- */
-
 // BounceType represents the type of bounce with a count.
 type BounceType struct {
 	Type  string
@@ -32,25 +29,6 @@ type BounceDeliveryStats struct {
 	InactiveMails int64
 	Bounces       []BounceType
 }
-
-// GetDeliveryStats will return all delivery stats aggregated by bounce type.
-func (s *BounceService) GetDeliveryStats() (*BounceDeliveryStats, *Response, error) {
-	request, err := s.client.NewRequest("GET", bounceDeliveryStatsAPIPath, nil)
-	if err != nil {
-		return nil, nil, err
-	}
-
-	deliveryStats := &BounceDeliveryStats{}
-	response, err := s.client.Do(request, deliveryStats)
-	if err != nil {
-		return nil, response, err
-	}
-
-	return deliveryStats, response, nil
-}
-
-/*
- * GetBounces --------------------------------------------------------- */
 
 // Bounces represents a slice of bounces and a given count.
 type Bounces struct {
@@ -87,6 +65,28 @@ type BounceActivated struct {
 	Bounce  Bounce
 }
 
+/*
+ * GetDeliveryStats --------------------------------------------------------- */
+
+// GetDeliveryStats will return all delivery stats aggregated by bounce type.
+func (s *BounceService) GetDeliveryStats() (*BounceDeliveryStats, *Response, error) {
+	request, err := s.client.NewRequest("GET", bounceDeliveryStatsAPIPath, nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	deliveryStats := &BounceDeliveryStats{}
+	response, err := s.client.Do(request, deliveryStats)
+	if err != nil {
+		return nil, response, err
+	}
+
+	return deliveryStats, response, nil
+}
+
+/*
+ * GetBounces --------------------------------------------------------- */
+
 // GetBounces will return all bounces.
 func (s *BounceService) GetBounces(bounceCount, bounceOffset int, parameters map[string]interface{}) (*Bounces, *Response, error) {
 
@@ -117,6 +117,9 @@ func (s *BounceService) GetBounces(bounceCount, bounceOffset int, parameters map
 	return &bounces, response, nil
 }
 
+/*
+ * GetSingleBounce --------------------------------------------------------- */
+
 // GetSingleBounce will return a single bounce by ID.
 func (s *BounceService) GetSingleBounce(bounceID int64) (*Bounce, *Response, error) {
 	request, err := s.client.NewRequest("GET", fmt.Sprintf("%s/%v", bounceBouncesAPIPath, bounceID), nil)
@@ -132,6 +135,9 @@ func (s *BounceService) GetSingleBounce(bounceID int64) (*Bounce, *Response, err
 
 	return &bounce, response, nil
 }
+
+/*
+ * GetBounceDump --------------------------------------------------------- */
 
 // GetBounceDump will return a single bounce dump by ID.
 func (s *BounceService) GetBounceDump(bounceID int64) (*BounceDump, *Response, error) {
@@ -149,6 +155,9 @@ func (s *BounceService) GetBounceDump(bounceID int64) (*BounceDump, *Response, e
 	return &dump, response, nil
 }
 
+/*
+ * ActivateBounce --------------------------------------------------------- */
+
 // ActivateBounce will attempt to reactivate this email via bounce ID.
 func (s *BounceService) ActivateBounce(bounceID int64) (*BounceActivated, *Response, error) {
 	request, err := s.client.NewRequest("PUT", fmt.Sprintf("%s/%v/activate", bounceBouncesAPIPath, bounceID), nil)
@@ -164,6 +173,9 @@ func (s *BounceService) ActivateBounce(bounceID int64) (*BounceActivated, *Respo
 
 	return &bounce, response, nil
 }
+
+/*
+ * GetBounceTags --------------------------------------------------------- */
 
 // GetBounceTags will return a slice of tag values that have generated bounces.
 func (s *BounceService) GetBounceTags() ([]string, *Response, error) {

@@ -73,8 +73,8 @@ if err != nil {
 What's Implemented?
 ----------------
 
-At the moment only a very small number of API endpoints are implemented. Open an
-issue (or PR) if you required additional endpoints!
+At the moment only a handful of the more common endpoints have been implemented. Open an
+issue (or PR) if you required something that's missing.
 
 - Send Email - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#send-email) | [Example](examples/send-email/main.go)
 - Send Email & Attachment - [API Docs](http://developer.postmarkapp.com/developer-api-email.html#send-email) | [Example](examples/send-email-attachment/main.go)
@@ -85,6 +85,8 @@ issue (or PR) if you required additional endpoints!
 - Get Bounce Dump - [API Docs](https://postmarkapp.com/developer/api/bounce-api#bounce-dump)
 - Activate a Bounce - [API Docs](https://postmarkapp.com/developer/api/bounce-api#activate-bounce)
 - Get Bounced Tags - [API Docs](https://postmarkapp.com/developer/api/bounce-api#bounced-tags)
+- List Templates - [API Docs](https://postmarkapp.com/developer/api/templates-api#list-templates)
+- Get Single Template - [API Docs](https://postmarkapp.com/developer/api/templates-api#get-template)
 
 Thanks &amp; Acknowledgements :ok_hand:
 ----------------

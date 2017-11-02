@@ -28,8 +28,9 @@ type Client struct {
 	BackendURL     *url.URL
 
 	// Services used for communicating with the API.
-	Email  *EmailService
-	Bounce *BounceService
+	Email    *EmailService
+	Bounce   *BounceService
+	Template *TemplateService
 }
 
 type service struct {
@@ -72,6 +73,7 @@ func NewClient(httpClient *http.Client) *Client {
 
 	c.Email = &EmailService{client: c}
 	c.Bounce = &BounceService{client: c}
+	c.Template = &TemplateService{client: c}
 	return c
 }
 
