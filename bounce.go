@@ -76,12 +76,23 @@ type Bounce struct {
 	Subject       string
 }
 
+// BounceDump represents a the raw source of bounce.
+type BounceDump struct {
+	Body string
+}
+
+// BounceActivated represents a bounce that has been reactivated.
+type BounceActivated struct {
+	Message string
+	Bounce  Bounce
+}
+
 // GetBounces will return all bounces.
 func (s *BounceService) GetBounces(bounceCount, bounceOffset int, parameters map[string]interface{}) (*Bounces, *Response, error) {
 
 	// Ensure our bounce count meets criteria.
 	if bounceCount > 500 {
-		return nil, nil, errors.New("The max number of bounces to return per request is 500.")
+		return nil, nil, errors.New("The max number of bounces to return per request is 500")
 	}
 
 	// Construct query parameters.
@@ -104,4 +115,68 @@ func (s *BounceService) GetBounces(bounceCount, bounceOffset int, parameters map
 	}
 
 	return &bounces, response, nil
+}
+
+// GetSingleBounce will return a single bounce by ID.
+func (s *BounceService) GetSingleBounce(bounceID int64) (*Bounce, *Response, error) {
+	request, err := s.client.NewRequest("GET", fmt.Sprintf("%s/%v", bounceBouncesAPIPath, bounceID), nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	bounce := Bounce{}
+	response, err := s.client.Do(request, &bounce)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return &bounce, response, nil
+}
+
+// GetBounceDump will return a single bounce dump by ID.
+func (s *BounceService) GetBounceDump(bounceID int64) (*BounceDump, *Response, error) {
+	request, err := s.client.NewRequest("GET", fmt.Sprintf("%s/%v/dump", bounceBouncesAPIPath, bounceID), nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	dump := BounceDump{}
+	response, err := s.client.Do(request, &dump)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return &dump, response, nil
+}
+
+// ActivateBounce will attempt to reactivate this email via bounce ID.
+func (s *BounceService) ActivateBounce(bounceID int64) (*BounceActivated, *Response, error) {
+	request, err := s.client.NewRequest("PUT", fmt.Sprintf("%s/%v/activate", bounceBouncesAPIPath, bounceID), nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	bounce := BounceActivated{}
+	response, err := s.client.Do(request, &bounce)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return &bounce, response, nil
+}
+
+// GetBounceTags will return a slice of tag values that have generated bounces.
+func (s *BounceService) GetBounceTags() ([]string, *Response, error) {
+	request, err := s.client.NewRequest("GET", fmt.Sprintf("%s/tags", bounceBouncesAPIPath), nil)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	tags := []string{}
+	response, err := s.client.Do(request, &tags)
+	if err != nil {
+		return nil, nil, err
+	}
+
+	return tags, response, nil
 }
