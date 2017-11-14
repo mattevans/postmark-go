@@ -2,6 +2,7 @@
 
 [![GoDoc](https://godoc.org/github.com/mattevans/postmark-go?status.svg)](https://godoc.org/github.com/mattevans/postmark-go)
 [![Build Status](https://travis-ci.org/mattevans/postmark-go.svg?branch=master)](https://travis-ci.org/mattevans/postmark-go)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/mattevans/postmark-go/blob/master/LICENSE)
 
 postmark-go is a [Go](http://golang.org) client library for accessing the Postmark API (http://developer.postmarkapp.com/).
 
