@@ -31,6 +31,7 @@ type Email struct {
 	Headers       []EmailHeader          `json:",omitempty"`
 	Attachments   []EmailAttachment      `json:",omitempty"`
 	TrackOpens    bool                   `json:",omitempty"`
+	MessageStream string                 `json:",omitempty"`
 }
 
 // EmailHeader represents the values for an email header.
