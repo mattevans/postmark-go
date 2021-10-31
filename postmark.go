@@ -11,12 +11,9 @@ import (
 )
 
 const (
-	packageVersion = "0.1.4"
+	packageVersion = "0.1.5"
 	backendURL     = "https://api.postmarkapp.com"
 	userAgent      = "postmark-go/" + packageVersion
-
-	connectionTypeAccount = "account"
-	connectionTypeServer  = "server"
 )
 
 // Client holds a connection to the Postmark API.
