@@ -102,7 +102,7 @@ func (s *EmailService) SendBatch(emailRequests []*Email) ([]*EmailResponse, *Res
 	return email, response, nil
 }
 
-// SendBatch will build and execute request to send batch emails via the API.
+// SendBatchTemplated will build and execute request to send batch templated emails via the API.
 func (s *EmailService) SendBatchTemplated(emailRequests []*Email) ([]*EmailResponse, *Response, error) {
 	if len(emailRequests) < 1 {
 		return nil, nil, errors.New("You must pass a minimum of one email to SendBatch()")
