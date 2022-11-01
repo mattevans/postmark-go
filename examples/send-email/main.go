@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	postmark "github.com/mattevans/postmark-go"
+	"github.com/mattevans/postmark-go"
 )
 
 func main() {
@@ -23,6 +23,10 @@ func main() {
 		TextBody:   "Hello dear Postmark user",
 		Tag:        "onboarding",
 		TrackOpens: true,
+		Metadata: map[string]string{
+			"client-id": "123456",
+			"client-ip": "127.0.0.1",
+		},
 	}
 
 	// Send it!

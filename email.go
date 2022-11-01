@@ -32,6 +32,7 @@ type Email struct {
 	Attachments   []EmailAttachment      `json:",omitempty"`
 	TrackOpens    bool                   `json:",omitempty"`
 	MessageStream string                 `json:",omitempty"`
+	Metadata      map[string]string      `json:",omitempty"`
 }
 
 // EmailHeader represents the values for an email header.
