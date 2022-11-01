@@ -5,13 +5,12 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 )
 
 const (
-	packageVersion = "0.1.5"
+	packageVersion = "0.1.6"
 	backendURL     = "https://api.postmarkapp.com"
 	userAgent      = "postmark-go/" + packageVersion
 )
@@ -152,7 +151,7 @@ func CheckResponse(r *http.Response) error {
 
 	errorResponse := &ErrorResponse{Response: r}
 
-	data, err := ioutil.ReadAll(r.Body)
+	data, err := io.ReadAll(r.Body)
 	if err == nil && len(data) > 0 {
 		err := json.Unmarshal(data, errorResponse)
 		if err != nil {
