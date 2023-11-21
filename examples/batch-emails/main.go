@@ -4,15 +4,16 @@ import (
 	"fmt"
 	"net/http"
 
-	postmark "github.com/mattevans/postmark-go"
+	"github.com/mattevans/postmark-go"
 )
 
 func main() {
-	// Authenticate.
-	auth := &http.Client{
-		Transport: &postmark.AuthTransport{Token: "SERVER_API_TOKEN"},
-	}
-	client := postmark.NewClient(auth)
+	// Init client with round tripper adding auth fields.
+	client := postmark.NewClient(
+		postmark.WithClient(&http.Client{
+			Transport: &postmark.AuthTransport{Token: "SERVER_API_TOKEN"},
+		}),
+	)
 
 	// Slice of recievers
 	receivers := []string{
