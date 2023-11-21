@@ -27,21 +27,21 @@ func NewOptions(opts ...Option) *Options {
 	return &out
 }
 
-// WithClient ...
+// WithClient allows you to set a custom http client.
 func WithClient(v *http.Client) Option {
 	return func(o *Options) {
 		o.Client = v
 	}
 }
 
-// WithBackendURL ...
+// WithBackendURL allows you to set a custom backend URL.
 func WithBackendURL(v string) Option {
 	return func(o *Options) {
 		o.BackendURL = v
 	}
 }
 
-// WithUserAgent ...
+// WithUserAgent allows you to set a custom user agent.
 func WithUserAgent(v string) Option {
 	return func(o *Options) {
 		o.UserAgent = v
