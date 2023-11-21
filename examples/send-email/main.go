@@ -8,11 +8,12 @@ import (
 )
 
 func main() {
-	// Authenticate.
-	auth := &http.Client{
-		Transport: &postmark.AuthTransport{Token: "SERVER_API_TOKEN"},
-	}
-	client := postmark.NewClient(auth)
+	// Init client with round tripper adding auth fields.
+	client := postmark.NewClient(
+		postmark.WithClient(&http.Client{
+			Transport: &postmark.AuthTransport{Token: "SERVER_API_TOKEN"},
+		}),
+	)
 
 	// Build the email.
 	emailReq := &postmark.Email{
